@@ -1,5 +1,6 @@
 //
 // Created by muyi on 2021/10/26.
+// 指针被定义为指向某种类型的数据，而不是定义成一个这种类型的变量。
 //
 
 #include <stdio.h>
@@ -19,6 +20,7 @@ int main() {
     pointer2 = pointer + 2;
     printf("pointer2 is: %s", pointer2);
 
-    strcpy(pointer2,"y you!\n");
+    strcpy(pointer2, "y you!\n");
     printf(pointer);
+    return 0;
 }

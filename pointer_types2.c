@@ -19,7 +19,7 @@ int main() {
     }
 
     for (i = 0; i < 5; i++) {
-        printf("[char pointer] points to %p,witch contains the char %c\n", char_pointer, *char_pointer);
+        printf("[char pointer] points to %p,witch contains the char '%c'\n", char_pointer, *char_pointer);
         char_pointer = char_pointer + 1;
     }
 }
