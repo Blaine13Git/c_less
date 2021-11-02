@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     }
 
     strcpy(char_ptr, "This is memory is located on the heap.");
-    printf("char_ptr (%p) --> '%s'\n", char_ptr, char_ptr);
+    printf("\tchar_ptr (%p) --> '%s'\n", char_ptr, char_ptr);
 
     //------------
     puts("[+] allocating 12 bytes of memory on the heap for int_ptr");
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     }
 
     *int_ptr = 31337;
-    printf("int_ptr (%p) --> %d\n", int_ptr, *int_ptr);
+    printf("\tint_ptr (%p) --> %d\n", int_ptr, *int_ptr);
 
     puts("[-] freeing char_ptr's heap memory...");
     free(char_ptr);
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     }
 
     strcpy(char_ptr, "new memory");
-    printf("char_ptr (%p) --> '%s'\n", char_ptr, char_ptr);
+    printf("\tchar_ptr (%p) --> '%s'\n", char_ptr, char_ptr);
 
     puts("[-] freeing int_ptr's heap memory");
     free(int_ptr);
@@ -60,3 +60,21 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
+/*
+ *
+ * 分配了一个较大的内存，随后将其释放，那么最后15个自己的分配，将发生在已释放的内存空间！！！
+ *
+ * muyi@muyi-de-Mac c_lesson % ./heap_example 241
+[+] allocating 300 bytes of memory on the heap for char_ptr
+        char_ptr (0x7fa8fd4059d0) --> 'This is memory is located on the heap.'
+[+] allocating 12 bytes of memory on the heap for int_ptr
+        int_ptr (0x7fa8fd405b00) --> 31337
+[-] freeing char_ptr's heap memory...
+[+] allocating another 15 bytes for char_ptr
+        char_ptr (0x7fa8fd4059d0) --> 'new memory'
+[-] freeing int_ptr's heap memory
+[-] freeing char_ptr's heap memory...
+ *muyi@muyi-de-Mac c_lesson %
+ *
+ */
