@@ -21,18 +21,22 @@ int main() {
     heap_var_ptr = (int *) malloc(4);
 
     // in data segment
-    printf("global_initialized_var @ 0x%08x\n", &global_initialized_var);
-    printf("static_initialized_var @ 0x%08x\n", &static_initialized_var);
+    puts("in data segment:");
+    printf("\tglobal_initialized_var @ 0x%08x\n", &global_initialized_var);
+    printf("\tstatic_initialized_var @ 0x%08x\n", &static_initialized_var);
 
     // in bss segment
-    printf("global_var @ 0x%08x\n", &global_var);
-    printf("static_var @ 0x%08x\n", &static_var);
+    puts("in bss segment:");
+    printf("\tglobal_var @ 0x%08x\n", &global_var);
+    printf("\tstatic_var @ 0x%08x\n", &static_var);
 
-    // in heap
-    printf("heap_var_ptr @ 0x%08x\n", heap_var_ptr);
+    // in heap segment
+    puts("in heap segment:");
+    printf("\theap_var_ptr @ 0x%08x\n", heap_var_ptr);
 
     // in stack segment
-    printf("stack_var @ 0x%08x\n", &stack_var);
+    puts("in stack segment:");
+    printf("\tstack_0x @ var%08x\n", &stack_var);
     function();
 
     return 0;
@@ -40,10 +44,15 @@ int main() {
 
 /*
  *
-global_initialized_var @ 0x00403010
-static_initialized_var @ 0x00403014
-global_var @ 0x00407990
-static_var @ 0x00407030
-heap_var_ptr @ 0x001f1440
-static_var @ 0x0061fe14
+in data segment:
+	global_initialized_var @ 0x24ff2040
+	static_initialized_var @ 0x24ff2044
+in bss segment:
+	global_var @ 0x24ff204c
+	static_var @ 0x24ff2050
+in heap segment:
+	heap_var_ptr @ 0x267212a0
+in stack segment:
+	stack_var @ 0xc6039b94
+	the function's stack_var is at address 0xc6039b7c
  */
