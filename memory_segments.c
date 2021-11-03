@@ -32,5 +32,18 @@ int main() {
     printf("heap_var_ptr @ 0x%08x\n", heap_var_ptr);
 
     // in stack segment
-    printf("static_var @ 0x%08x\n", &stack_var);
+    printf("stack_var @ 0x%08x\n", &stack_var);
+    function();
+
+    return 0;
 }
+
+/*
+ *
+global_initialized_var @ 0x00403010
+static_initialized_var @ 0x00403014
+global_var @ 0x00407990
+static_var @ 0x00407030
+heap_var_ptr @ 0x001f1440
+static_var @ 0x0061fe14
+ */
