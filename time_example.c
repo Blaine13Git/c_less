@@ -8,7 +8,6 @@
 int main() {
     long int seconds_since_epoch;
     struct tm current_time, *time_ptr;
-
     int hour, minute, second, day, month, year;
 
     seconds_since_epoch = time(0);
