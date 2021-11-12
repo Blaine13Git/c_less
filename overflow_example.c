@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]) {
     int value = 5;
-    char buffer_one[8], buffer_two[8];
+    char buffer_one[4], buffer_two[4];
 
     strcpy(buffer_one, "one");
     strcpy(buffer_two, "two");
