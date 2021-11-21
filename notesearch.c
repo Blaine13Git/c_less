@@ -36,8 +36,6 @@ int main(int argc, char *argv[]) {
         printing = print_notes(fd, userid, search_string);
     printf("------[end of note data]-------");
     close(fd);
-
-    return 0;
 }
 
 
