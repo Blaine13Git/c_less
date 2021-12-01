@@ -21,10 +21,10 @@ int main(int argc, char *argv[]) {
     int userid, fd;// 文件描述符
     char *buffer, *datafile;
 
-    buffer = ec_malloc(100);
-    datafile = ec_malloc(20);
+    buffer = (char *)ec_malloc(100);
 
-    strcpy(datafile, "/Users/muyi/CLionProjects/c_lesson/data2");
+    datafile = (char *)ec_malloc(20);
+    strcpy(datafile, "/Users/muyi/CLionProjects/c_lesson/data_new");
 
     if (argc < 2)
         usage(argv[0], datafile);
@@ -61,22 +61,3 @@ int main(int argc, char *argv[]) {
     free(buffer);
     free(datafile);
 }
-
-//void fatal(char *message) {
-//    char error_message[100];
-//
-//    strcpy(error_message, "[!!] Fatal error");
-//    strncat(error_message, message, 83);
-//    perror(error_message); // print error 的缩写，可在退出前打印辅助错误信息
-//    exit(-1);
-//}
-//
-//void *ec_malloc(unsigned int size) {
-//    void *ptr;
-//    ptr = malloc(size);
-//
-//    if (ptr == NULL) {
-//        fatal("in ec_malloc on memory allocation");
-//    }
-//    return ptr;
-//}

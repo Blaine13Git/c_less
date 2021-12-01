@@ -11,8 +11,8 @@ int check_authentication(char *password) {
 
     strcpy(password_buffer, password);
 
-    if (strcmp(password_buffer, "brillig")) auth_flag = 1;
-    if (strcmp(password_buffer, "outgrabe")) auth_flag = 1;
+    if (strcmp(password_buffer, "brillig") == 0) auth_flag = 1;
+    if (strcmp(password_buffer, "outgrabe") == 0) auth_flag = 1;
 
     return auth_flag;
 }
@@ -25,9 +25,9 @@ int main(int argc, char *argv[]) {
 
     puts("===========================");
 
-    if(check_authentication(argv[1])){
+    if (check_authentication(argv[1])) {
         puts("Access Granted.");
-    } else{
+    } else {
         puts("Access Denied.");
     }
 }

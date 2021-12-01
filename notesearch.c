@@ -1,14 +1,10 @@
-//
-// Created by kali on 11/5/21.
-//
-
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include "hacking.h"
 
-#define FILENAME "/home/kali/Work/c_programs/c_lesson/data"
+#define FILENAME "/Users/muyi/CLionProjects/c_lesson/data_new"
 
 int print_notes(int, int, char *);
 
@@ -34,7 +30,9 @@ int main(int argc, char *argv[]) {
 
     while (printing)
         printing = print_notes(fd, userid, search_string);
+
     printf("------[end of note data]-------");
+
     close(fd);
 }
 
@@ -44,26 +42,24 @@ int print_notes(int fd, int uid, char *search_string) {
     char byte = 0, note_buffer[100];
 
     note_length = find_user_note(fd, uid);
-
-    // if end of file reached,return 0
-    if (note_length == -1)
+    if (note_length == -1)// if end of file reached,return 0
         return 0;
 
     read(fd, note_buffer, note_length); // read note data
     note_buffer[note_length] = 0; // terminate the string
 
     if (search_note(note_buffer, search_string))
-        printf(note_buffer);
+        puts(note_buffer);
 
     return 1;
 }
 
-int find_user_note(int fd, int uid) {
+int find_user_note(int fd, int user_uid) {
     int note_uid = -1;
     unsigned char byte;
     int length;
 
-    while (note_uid != uid) {
+    while (note_uid != user_uid) {
         if (read(fd, &note_uid, 4) != 4)
             return -1;
 
@@ -86,16 +82,18 @@ int find_user_note(int fd, int uid) {
 }
 
 int search_note(char *note, char *keyword) {
-    int keyword_length, match = 0;
-    if (keyword_length == 0)
-        return 1;
+    int i, keyword_length, match = 0;
 
-    for (int i = 0; i < strlen(note); i++) {
-        if (note[i] == keyword[match])
-            match++;
+    keyword_length = strlen(keyword);
+    if (keyword_length == 0) // if there is no search string
+        return 1; // always match
+
+    for (i = 0; i < strlen(note); i++) {
+        if (note[i] == keyword[match]) // if byte matches keyword
+            match++; // get ready to check the next byte
         else {
-            if (note[i] == keyword[0])
-                match = 1;
+            if (note[i] == keyword[0]) // if that byte matches first keyword byte
+                match = 1; // start the match count at 1
             else
                 match = 0; // otherwise it is 0
         }
