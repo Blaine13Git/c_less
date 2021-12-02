@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "cstring": "cpp",
+        "locale": "cpp",
+        "hacking.h": "c",
+        "stdio.h": "c"
+    }
+}
